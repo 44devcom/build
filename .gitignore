@@ -1,0 +1,28 @@
+# Build output
+_site/
+docs/
+
+# Bundler / gems
+/.bundle
+vendor/bundle/
+
+# Jekyll cache
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Editor directories and system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+
+# Logs and temp files
+*.log
+tmp/
+
+# Environment
+.env

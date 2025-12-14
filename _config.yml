@@ -1,1 +1,15 @@
+title: Hacker Demo
+description: "A local demo implementing features from the GitHub Pages 'Hacker' theme"
+url: "" # set to your site URL when publishing, e.g. https://example.com
+baseurl: "" # change if serving from subpath
+
+plugins:
+  - jekyll-feed
+
+# Using local layouts/includes for demo to avoid fetching remote_theme
+# If you prefer remote theme, restore `remote_theme: pages-themes/hacker`
+
+# Theme-specific (demo) settings
+author: Demo Author
+paginate: 5
 

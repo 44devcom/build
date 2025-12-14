@@ -1,0 +1,68 @@
+/* Minimal "hacker" theme: green-on-black, monospace, high-contrast */
+:root {
+    --bg: #000000;
+    --fg: #00ff6a;
+    --muted: #6bff99;
+    --accent: #00d4ff;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 3rem;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "SFMono-Regular", Consolas, Monaco, monospace;
+    line-height: 1.5;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--muted)
+}
+
+p.lead {
+    color: var(--fg);
+    margin: 0 0 1rem 0
+}
+
+.panel {
+    border: 1px solid rgba(0, 255, 106, 0.08);
+    padding: 1rem;
+    border-radius: 6px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent)
+}
+
+code,
+pre {
+    font-family: inherit;
+    color: var(--accent);
+    background: transparent
+}
+
+pre {
+    white-space: pre-wrap;
+    word-break: break-word
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.35rem 0.6rem;
+    border: 1px solid rgba(0, 255, 106, 0.12);
+    color: var(--muted);
+    text-decoration: none;
+    border-radius: 4px
+}
+
+.footer {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    color: rgba(0, 255, 106, 0.45);
+    font-size: 0.85rem
+}

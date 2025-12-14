@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Hacker Theme Demo</title>
+    <link rel="stylesheet" href="assets/hacker.css">
+</head>
+
+<body>
+    <header style="margin-bottom:1.5rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div>
+                <h1 style="margin:0">Hacker Theme — Demo</h1>
+                <div style="color:rgba(0,255,106,0.6)">A small static preview of pages-themes/hacker features</div>
+            </div>
+            <nav>
+                <a class="btn" href="#features">Features</a>
+                <a class="btn" href="#run">Run</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="panel" style="margin-bottom:1rem;">
+        <p class="lead">This demo includes:</p>
+        <ul>
+            <li>Responsive header and nav</li>
+            <li>Author / social area</li>
+            <li>Posts list and pagination (static sample)</li>
+            <li>Feed link and SEO-friendly meta tags (in `_config.yml`)</li>
+        </ul>
+    </section>
+
+    <section id="posts" class="panel" style="margin-bottom:1rem;">
+        <h2>Recent posts</h2>
+        <article>
+            <h3>Demo: Hacker theme features</h3>
+            <p class="lead">A static post demonstrating the theme sections and styling.</p>
+            <p><a class="btn" href="#">Read more</a></p>
+        </article>
+        <article>
+            <h3>Usage: Expose with Cloudflared</h3>
+            <p class="lead">Run <code>bash t.sh</code> (Termux/cloudflared) to route a domain to this demo.</p>
+        </article>
+    </section>
+
+    <section id="features" class="panel" style="margin-bottom:1rem;">
+        <h2>Theme feature parity</h2>
+        <p>To approximate the GitHub Pages Hacker theme, this demo includes:</p>
+        <ul>
+            <li>Green-on-black color palette and monospace typography</li>
+            <li>Simple responsive layout (header, content, footer)</li>
+            <li>Feed link via `jekyll-feed` (declared in `_config.yml`)</li>
+        </ul>
+    </section>
+
+    <section id="run" class="panel">
+        <h2>Run locally</h2>
+        <ol>
+            <li>Start a local server from the `site` folder on port 8080:</li>
+            <pre><code>cd site
+./serve.sh
+</code></pre>
+            <li>Expose it with the tunnel script (Termux/cloudflared):</li>
+            <pre><code>bash t.sh</code></pre>
+        </ol>
+    </section>
+
+    <footer class="footer">Demo — /site/index.html</footer>
+</body>
+
+</html>
