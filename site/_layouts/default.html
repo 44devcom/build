@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>{{ page.title | default: site.title }}</title>
   <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | default: site.description }}">
-  <link rel="stylesheet" href="/assets/hacker.css">
+  <link rel="stylesheet" href="{{ '/assets/hacker.css' | relative_url }}">
 </head>
 
 <body>

@@ -15,8 +15,8 @@ bundle install
 
 Run the Jekyll dev server (serves the `site/` folder)
 ```bash
-# from repo root
-bundle exec jekyll serve --source site --destination _site --port 8080 --host 0.0.0.0
+# from repo root; include the repository `_config.yml` so `baseurl` is applied
+bundle exec jekyll serve --config _config.yml --source site --destination _site --port 8080 --host 0.0.0.0
 ```
 
 Notes
@@ -34,7 +34,16 @@ CI / Auto-deploy
  - After the workflow runs, configure GitHub Pages in the repo Settings to serve from the `gh-pages` branch (root) if not already set. The action pushes to `gh-pages` automatically.
 
 Local build vs CI
- - Use the local `bundle exec jekyll build --source site --destination _site` to verify output before pushing.
+- Use the local `bundle exec jekyll build --config _config.yml --source site --destination _site` to verify output before pushing.
+
+Notes about the remote theme
+- This repo now uses the official GitHub Pages `pages-themes/hacker` remote theme via `remote_theme`.
+- Building locally requires network access so Jekyll can fetch the remote theme. Use `bundle install` and run the build with the repository `_config.yml`:
+```bash
+bundle install
+bundle exec jekyll build --config _config.yml --source site --destination _site --future
+```
+If you prefer to render fully offline, tell me and I will vendor the theme files into the `site/` directory.
  - If you'd rather not use Actions, you can publish manually by building into `docs/` or pushing `_site` to `gh-pages` (see README earlier for examples).
 
 If you'd like, I can try running `bundle install` and a local `jekyll build` here to validate the workflow (I will need network access). If you prefer, I can also add a workflow that deploys to GitHub Pages and sets the Pages API configuration (requires a token).
