@@ -1,3 +1,13 @@
+ - title: Hacker Demo
+   url: /
+ - title: About
+   url: /about/
+ - title: Projects
+   url: /projects/
+ - title: Contact
+   url: /contact/
+ - title: New Page
+   url: /newpage/
 - title: Home
   url: /
 - title: About
