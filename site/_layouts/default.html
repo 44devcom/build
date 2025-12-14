@@ -1,5 +1,35 @@
 <!doctype html>
 <html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ page.title | default: site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/hacker.css' | relative_url }}">
+  <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | default: site.description }}">
+  <meta name="generator" content="Jekyll">
+</head>
+<body>
+  <header style="padding:1rem 0;border-bottom:1px solid rgba(0,255,106,0.06);">
+    <div style="max-width:900px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <a href="{{ '/' | relative_url }}" style="text-decoration:none;color:var(--muted)"><h1 style="margin:0">{{ site.title }}</h1></a>
+        <div style="color:rgba(0,255,106,0.6);font-size:0.95rem">{{ site.description }}</div>
+      </div>
+      <nav>
+        {% include navigation.html %}
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width:900px;margin:1rem auto;padding:0 1rem;">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+</body>
+</html>
+<!doctype html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">

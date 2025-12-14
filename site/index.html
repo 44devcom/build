@@ -18,3 +18,13 @@ Run locally:
 bundle exec jekyll build --config _config.yml --source site --destination _site --future
 python3 -m http.server 8080 --directory _site
 ```
+
+<!-- Inline menu (renders on the home page) -->
+<nav style="margin-top:1.25rem;">
+    {% assign nav = site.data.navigation %}
+    {% if nav %}
+    {% for item in nav %}
+    <a class="btn" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+    {% endfor %}
+    {% endif %}
+</nav>
