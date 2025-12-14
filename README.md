@@ -1,32 +1,59 @@
-# Hacker theme demo — Jekyll development
 
-This repository contains a minimal static demo of the GitHub Pages "Hacker" theme under `site/`.
+# Hacker theme demo — developer & deployment guide
 
-If you want to render the remote theme locally with Jekyll, follow these steps.
+Quick overview
+- This repo demonstrates a GitHub Pages site based on the "Hacker" look-and-feel. Source content is in the `site/` folder; the generated static site is `_site/`.
+- The repository contains both a vendored, local approximation of the theme (in `site/_layouts` and `site/_includes`) and `remote_theme: pages-themes/hacker` in `_config.yml`.
 
-Prerequisites
-- Ruby (2.7+) and `bundler` installed on your machine or dev container.
+Prerequisites (local)
+- Ruby (>= 3.0 recommended), Bundler, and network access if you use the remote theme.
 
-Install dependencies
+Install and build locally
 ```bash
 cd /workspaces/build
 bundle install
+# Build with the repository config so `baseurl` is applied
+bundle exec jekyll build --config _config.yml --source site --destination _site --future
 ```
 
-Run the Jekyll dev server (serves the `site/` folder)
+Preview locally
 ```bash
-# from repo root; include the repository `_config.yml` so `baseurl` is applied
-bundle exec jekyll serve --config _config.yml --source site --destination _site --port 8080 --host 0.0.0.0
+python3 -m http.server 8080 --directory _site
+# open http://localhost:8080
 ```
-
-Notes
-- `_config.yml` enables `remote_theme: pages-themes/hacker`. The remote theme requires network access when Jekyll builds.
-- For a minimal local preview without installing Jekyll, use the lightweight helper in `site/serve.sh`:
+Or use the lightweight helper (no Jekyll required):
 ```bash
 cd site
 ./serve.sh
 ```
-- To expose the local server with Cloudflare Tunnel, run `bash t.sh` (Termux/cloudflared environment).
+
+Notes about theme behavior
+- Remote theme: `_config.yml` may include `remote_theme: pages-themes/hacker` and the `jekyll-remote-theme` plugin. When building, Jekyll will fetch the remote theme assets and layouts.
+- Vendored theme: this repo also includes local `site/_layouts` and `site/_includes` so you can build and preview the exact layout offline. Local files take precedence over remote theme files.
+
+CI / Auto-deploy
+- Workflow: `.github/workflows/deploy.yml` builds the site and publishes `_site/` to the `gh-pages` branch using `peaceiris/actions-gh-pages`.
+- The workflow runs `bundle install` and `bundle exec jekyll build --config _config.yml --source site --destination _site`, then publishes `_site` and verifies
+	the Pages URL `https://44devcom.github.io/build/` responds with HTTP 200.
+
+How deploy works (manual alternative)
+- To publish without Actions: build into `docs/` and push `master` with `docs/` as Pages source, or push `_site/` contents to a `gh-pages` branch.
+
+Common troubleshooting
+- "Layout 'home' requested does not exist": happens locally if `jekyll-remote-theme` cannot fetch the remote theme. Use the vendored layouts or ensure network access and `bundle install` succeeded.
+- 403/permission errors pushing from Actions: workflow needs `permissions: contents: write` and `pages: write` (already configured). If pushing fails, check repository-level Actions/Pages settings and `GITHUB_TOKEN` permissions.
+- Missing posts: Jekyll ignores future-dated posts unless you pass `--future`.
+
+Useful commands
+- Dev build: `bundle exec jekyll build --config _config.yml --source site --destination _site --future`
+- Dev server: `bundle exec jekyll serve --config _config.yml --source site --destination _site --port 8080`
+- Quick preview: `python3 -m http.server 8080 --directory _site`
+
+If you want, I can:
+- remove the vendored theme and rely solely on `remote_theme` (requires network at build time),
+- or vendor the complete Pages Hacker theme (copy remaining theme assets/layouts) so the repo is fully self-contained.
+
+Questions or next steps? Tell me which option you prefer (remote-only vs fully vendored) and I’ll apply it.
 
 CI / Auto-deploy
  - This repository includes a GitHub Actions workflow that builds the site and deploys the generated `_site` to the `gh-pages` branch on every push to `master`.

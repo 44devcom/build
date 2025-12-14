@@ -32,11 +32,13 @@ jobs:
       - name: Build site
         run: bundle exec jekyll build --config _config.yml --source site --destination _site
 
-      - name: Deploy to gh-pages
+      - name: Deploy to Pages (publish to master:/docs)
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
+          publish_branch: master
+          destination_dir: docs
 
       - name: Verify deployed site
         run: |
